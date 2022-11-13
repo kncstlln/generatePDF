@@ -2,8 +2,8 @@
 require "vendor/autoload.php";
 use Fpdf\Fpdf;
 
-$csv_file = 'population.csv';
-$handle = fopen($csv_file, 'r');
+$file = 'population.csv';
+$handle = fopen($file, 'r');
 $row_index = 0; // initialize
 $headers = [];
 $data = [];
@@ -53,7 +53,7 @@ function FancyTable($headers, $data)
     $this->SetLineWidth(.3);
     $this->SetFont('Arial','B');
     // Header
-    $w = array(40, 35, 40, 45);
+    $w = array(40, 70, 80);
     for($i=0;$i<count($headers);$i++)
         $this->Cell($w[$i],7,$headers[$i],1,0,'C',true);
     $this->Ln();
@@ -68,7 +68,6 @@ function FancyTable($headers, $data)
         $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
         $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
         $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R',$fill);
-        $this->Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);
         $this->Ln();
         $fill = !$fill;
     }
